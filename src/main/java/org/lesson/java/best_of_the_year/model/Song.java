@@ -8,7 +8,6 @@ public class Song {
     public Song(int id, String title) {
         this.id = id;
         this.title = title;
-
     }
 
     // Getters
