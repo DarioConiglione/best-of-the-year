@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -73,6 +74,39 @@ public class homeController {
         }
         model.addAttribute("listaSongs", titoliSongs);
         return "songs";
+    }
+
+    @GetMapping("/movies/{id}")
+    public String singleMovie(@PathVariable("id") int movieId, Model model) {
+
+        List<Movie> movies = getBestMovies();
+        Movie movieFound = null;
+
+        for (Movie m : movies) {
+            if (m.getId() == movieId) {
+                movieFound = m;
+            }
+        }
+        model.addAttribute("SingleMovie", movieFound);
+
+        return "movieDetail";
+
+    }
+
+    @GetMapping("/songs/{id}")
+    public String singleSong(@PathVariable("id") int songId, Model model) {
+
+        List<Song> songs = getBestSongs();
+        Song songFound = null;
+
+        for (Song s : songs) {
+            if (s.getId() == songId) {
+                songFound = s;
+            }
+        }
+        model.addAttribute("SingleSong", songFound);
+
+        return "songDetail";
     }
 
 }
