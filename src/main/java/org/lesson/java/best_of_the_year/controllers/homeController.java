@@ -22,7 +22,6 @@ public class homeController {
         return "home";
     }
 
-    @GetMapping("/movies")
     private List<Movie> getBestMovies() {
         List<Movie> movies = new ArrayList<>();
         movies.add(new Movie(1, "Titanic"));
@@ -33,7 +32,6 @@ public class homeController {
         return movies;
     }
 
-    @GetMapping("/songs")
     private List<Song> getBestSongs() {
         List<Song> songs = new ArrayList<>();
         songs.add(new Song(0, "Godzilla"));
@@ -43,6 +41,38 @@ public class homeController {
 
         return songs;
 
+    }
+
+    @GetMapping("/movies")
+    public String getBestMovies(Model model) {
+
+        List<Movie> movies = getBestMovies();
+        String titoliFilm = "";
+
+        for (int i = 0; i < movies.size(); i++) {
+            titoliFilm += movies.get(i).getTitle();
+            if (i < movies.size() - 1) {
+                titoliFilm += ", ";
+            }
+        }
+
+        model.addAttribute("listaFilm", titoliFilm);
+        return "movies";
+    }
+
+    @GetMapping("/songs")
+    public String getBestSongs(Model model) {
+        List<Song> songs = getBestSongs();
+        String titoliSongs = "";
+
+        for (int i = 0; i < songs.size(); i++) {
+            titoliSongs += songs.get(i).getTitle();
+            if (i < songs.size() - 1) {
+                titoliSongs += ", ";
+            }
+        }
+        model.addAttribute("listaSongs", titoliSongs);
+        return "songs";
     }
 
 }
