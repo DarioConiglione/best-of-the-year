@@ -46,33 +46,14 @@ public class homeController {
 
     @GetMapping("/movies")
     public String getBestMovies(Model model) {
-
-        List<Movie> movies = getBestMovies();
-        String titoliFilm = "";
-
-        for (int i = 0; i < movies.size(); i++) {
-            titoliFilm += movies.get(i).getTitle();
-            if (i < movies.size() - 1) {
-                titoliFilm += ", ";
-            }
-        }
-
-        model.addAttribute("listaFilm", titoliFilm);
+        model.addAttribute("listaFilm", getBestMovies());
         return "movies";
     }
 
     @GetMapping("/songs")
     public String getBestSongs(Model model) {
-        List<Song> songs = getBestSongs();
-        String titoliSongs = "";
 
-        for (int i = 0; i < songs.size(); i++) {
-            titoliSongs += songs.get(i).getTitle();
-            if (i < songs.size() - 1) {
-                titoliSongs += ", ";
-            }
-        }
-        model.addAttribute("listaSongs", titoliSongs);
+        model.addAttribute("listaSongs", getBestSongs());
         return "songs";
     }
 

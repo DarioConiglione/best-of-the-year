@@ -1,15 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOVIES</title>
+    <th:block th:replace="~{fragments :: header-links}"></th:block>
 </head>
 
 <body>
-    <h1>La lista di migliori film è: </h1>
-    <h3 th:text="${listaFilm}"></h3>
+    <nav th:replace="~{fragments :: navbar}"></nav>
+    <div class="container mt-5">
+        <h1>I best film in assoluto</h1>
+
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titolo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="m : ${listaFilm}">
+                    <td th:text="${m.id}"></td>
+                    <td th:text="${m.title}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="~{fragments :: footer-scripts}"></div>
 
 </body>
 

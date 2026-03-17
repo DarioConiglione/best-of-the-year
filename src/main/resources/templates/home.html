@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <th:block th:replace="~{fragments :: header-links}"></th:block>
 </head>
 
 <body>
-    <h1 th:text="'Best of the year by ' + ${name}"></h1>
+    <nav th:replace="~{fragments :: navbar}"></nav>
+    <div class="container mt-5">
+        <h1>I miei film preferiti</h1>
+
+
+    </div>
+
+    <div th:replace="~{fragments :: footer-scripts}"></div>
 </body>
 
 </html>
